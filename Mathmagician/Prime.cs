@@ -20,6 +20,7 @@ namespace Mathmagician
                 return false;
             }
 
+            /*
             for (int i = 2; i < p-1; i++)
             {
                 if (p % i == 0)
@@ -27,8 +28,27 @@ namespace Mathmagician
                     return false;
                 }
             }
+            */
+            int i = 2;
+            while (i < (p - 1)/2)
+            {
+                if (p % i == 0)
+                {
+                    return false;
+                }
+                i++;
+            }
 
             return true;
+        }
+        public override int GetNext(int current)
+        {
+            int candidate = current+1;
+            while (!isPrime(candidate))
+            {
+                candidate++;
+            }
+            return candidate;
         }
     }
 }
