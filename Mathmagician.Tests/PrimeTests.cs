@@ -9,18 +9,18 @@ namespace Mathmagician.Tests
         [TestMethod]
         public void PrimeEnsureICanCreateInstance()
         {
-            Prime my_Primes = new Prime();
-            Assert.IsNotNull(my_Primes);
+            Prime my_primes = new Prime();
+            Assert.IsNotNull(my_primes);
         }
 
         [TestMethod]
         public void PrimeEnsureICanGetFirst()
         {
             // Arrange
-            Prime my_Primes = new Prime();
+            Prime my_primes = new Prime();
 
             // Act
-            int actual = my_Primes.GetFirst();
+            int actual = my_primes.GetFirst();
             int expected = 2;
 
             // Assert
@@ -31,10 +31,10 @@ namespace Mathmagician.Tests
         public void PrimeEnsureICanGetNext()
         {
             // Arrange
-            Prime my_Primes = new Prime();
+            Prime my_primes = new Prime();
 
             // Act
-            int actual = my_Primes.GetNext(5);
+            int actual = my_primes.GetNext(5);
             int expected = 7;
 
             // Assert
@@ -45,18 +45,62 @@ namespace Mathmagician.Tests
         public void PrimeIntegerEnsureICanCreateASequenceOfTen()
         {
             // Arrange
-            Prime my_Primes = new Prime();
+            Prime my_primes = new Prime();
 
             // Act
-            int[] actual = my_Primes.GetSequence(10);
+            int[] actual = my_primes.GetSequence(10);
             int[] expected = new int[] { 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 
             // Assert
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void TestMethod1()
+        public void PrimeIs37Prime()
         {
+            //Arrange
+            Prime my_primes = new Prime();
+
+            //Act
+            bool actual = my_primes.isPrime(37);
+
+            //Assert
+            Assert.IsTrue(actual);
+        }
+        [TestMethod]
+        public void PrimeIs24Prime()
+        {
+            //Arrange
+            Prime my_primes = new Prime();
+
+            //Act
+            bool actual = my_primes.isPrime(24);
+
+            //Assert
+            Assert.IsFalse(actual);
+        }
+        [TestMethod]
+        public void PrimeIs2Prime()
+        {
+            //Arrange
+            Prime my_primes = new Prime();
+
+            //Act
+            bool actual = my_primes.isPrime(2);
+
+            //Assert
+            Assert.IsTrue(actual);
+        }
+        [TestMethod]
+        public void PrimeIs33Prime()
+        {
+            //Arrange
+            Prime my_primes = new Prime();
+
+            //Act
+            bool actual = my_primes.isPrime(33);
+
+            //Assert
+            Assert.IsFalse(actual);
         }
     }
 }
