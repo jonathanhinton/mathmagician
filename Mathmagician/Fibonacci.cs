@@ -13,27 +13,71 @@ namespace Mathmagician
         {
             First = 1;
             elements = new int[Max];
-            for (int i = 0; i < Max; i++)
+
+            elements[0] = 1;
+            elements[1] = 1;
+            elements[2] = 2;
+            elements[3] = 3;
+            elements[4] = 5;
+
+
+            for (int n = 6; n < Max; n++)
             {
-                elements[i] = GetNth(i + 1);
+                elements[n - 1] = GetNthCached(n);
+            }
+        }
+
+        public int GetNthCached(int n)
+        {
+            if (n <= 0) { throw new Exception(); }
+
+            if (elements[n-1] != 0)
+            {
+                return elements[n - 1];
+            }
+            else
+            {
+                int first_term;
+                if (elements[n-2] == 0)
+                {
+                    first_term = GetNthCached(n - 1);
+                    elements[n - 2] = first_term;
+                }
+                else
+                {
+                    first_term = elements[n - 2];
+                }
+                int second_term;
+                if (elements[n - 3] == 0)
+                {
+                    second_term = GetNthCached(n - 2);
+                    elements[n - 3] = first_term;
+                }
+                else
+                {
+                    second_term = elements[n - 3];
+                }
+
+                return first_term + second_term;
             }
         }
 
         public override int GetNext(int current)
         {
-            return GetNth(current + 1);
+           int actual_index = Array.FindIndex(elements, value => 8 == value);
+            return elements[actual_index + 1];
         }
 
         public int GetNth(int n)
         {
             if (n <= 0) { throw new Exception(); }
 
-            if (n == 1 || n == 2)
+            if (n <= 5)
             {
-                return 1;
+                return elements[n-1];
             } else
             {
-                return GetNth(n-1) + GetNth(n-2);
+                return GetNthCached(n-1) + GetNthCached(n-2);
             }
         }
 
